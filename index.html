@@ -5,25 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoundZ</title>
     <link rel="stylesheet" href="./style.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="logo-container">
 
         <div id="mc_embed_shell">
             <!--
-             <div class="logo">
-             <!--<h1 class="title">RoundZ</h1>
-             <img src="./content/LibraryLogo.png" alt="RoundZLogo" width="200" height="100">
-             </div>
-            -->
+     <div class="logo">
+     <!--<h1 class="title">RoundZ</h1>
+     <img src="./content/LibraryLogo.png" alt="RoundZLogo" width="200" height="100">
+     </div>
+    -->
             <header>
                 <img src="./content/LibraryLogo.png" alt="RoundZ Logo" class="logo">
             </header>
-            <p class="desc">RoundZ is an intense, round-based survival zombie game where the challenge grows with each round. As the rounds progress, the zombies become tougher, gaining more health and attacking in increasingly larger waves, testing your survival skills to the limit..</p>
-            <a href="https://store.steampowered.com/?l">
-                <button>Get RoundZ</button>
+            <div class="titledesc">
+                How Many <span class="highlighttitle">Rounds</span> Can You Go?
+            </div>
+            <p class="desc">RoundZ is an intense, round-based survival zombie game where the challenge grows with each round. As the rounds progress, the zombies become tougher, gaining more health and attacking in increasingly larger waves, testing your survival skills to the limit.</p>
+            <a href="https://store.steampowered.com/?l" target="_blank">
+                <button class="buy_button">Get RoundZ</button>
             </a>
+            <div class="video-container">
+                <video class="launchtrailer" autoplay loop muted id="video" onclick="toggleMute()">
+                    <source src="./content/TeaserTrailer1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- Mute/Unmute Button (Invisible) -->
+                <button id="unmuteButton" class="mute-button">
+                    <span id="muteIcon" class="fas fa-volume-mute"></span>  <!-- Muted Icon Initially -->
+                </button>
+            </div>
+
+            <script>
+                // Toggle Mute/Unmute when video is clicked
+                function toggleMute() {
+                    var video = document.getElementById("video");
+                    var muteIcon = document.getElementById("muteIcon");
+
+                    // Toggle mute state
+                    if (video.muted) {
+                        video.muted = false;
+                        muteIcon.classList.remove("fa-volume-mute");
+                        muteIcon.classList.add("fa-volume-up");  // Unmuted icon
+                    } else {
+                        video.muted = true;
+                        muteIcon.classList.remove("fa-volume-up");
+                        muteIcon.classList.add("fa-volume-mute");  // Muted icon
+                    }
+                }
+
+                // Get the mute button element
+                const muteButton = document.getElementById("unmuteButton");
+
+                // Function to handle mouse hover timing
+                let hoverTimeout;
+                let isHovered = false;
+
+                document.querySelector('.video-container').addEventListener('mouseenter', () => {
+                    isHovered = true;
+                    muteButton.style.opacity = '0.5'; // Make the button translucent on hover
+                    clearTimeout(hoverTimeout); // Clear any previous timeouts in case of fast movement
+
+                    // Set a timeout to hide the button after 1 second of hover
+                    hoverTimeout = setTimeout(() => {
+                        if (isHovered) {
+                            muteButton.style.opacity = '0'; // Hide the button after 1 second of hover
+                        }
+                    }, 1000);
+                });
+
+                document.querySelector('.video-container').addEventListener('mouseleave', () => {
+                    isHovered = false;
+                    clearTimeout(hoverTimeout); // Clear the timeout if the mouse leaves before 1 second
+                    muteButton.style.opacity = '0'; // Immediately hide the button when mouse leaves
+                });
+
+                // Reset opacity to 1 if the button is clicked
+                muteButton.addEventListener('click', () => {
+                    muteButton.style.opacity = '1'; // Show the button when clicked to mute/unmute
+                });
+
+                // Show the button again when the user moves the mouse on the video area
+                document.querySelector('.video-container').addEventListener('mousemove', () => {
+                    if (muteButton.style.opacity == '0') {
+                        muteButton.style.opacity = '0.5'; // Show the button with reduced opacity on mouse movement
+                    }
+
+                    // Reset the hover timeout if the mouse is still moving
+                    clearTimeout(hoverTimeout);
+
+                    hoverTimeout = setTimeout(() => {
+                        muteButton.style.opacity = '0'; // Hide after 1 second of inactivity
+                    }, 1000);
+                });
+            </script>
+
             <!--
     <div id="mc_embed_signup">
         <form action="https://gmail.us7.list-manage.com/subscribe/post?u=d68b80da10ae4882e055ce69e&amp;id=23eaf59469&amp;f_id=007ea3e3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self" novalidate="">
@@ -52,7 +131,7 @@
             <h1 class="heading">Gallery</h1>
             <div class="screenshot-container">
                 <div class="screenshot">
-                    
+
                 </div>
             </div>
         </div>
