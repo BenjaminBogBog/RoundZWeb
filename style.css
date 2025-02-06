@@ -158,8 +158,7 @@ input{
 /* Responsive for mobile devices */
 @media (max-width: 768px) {
     .titledesc {
-        font-family: 'Veteran Typewriter', Arial, sans-serif;
-        font-size: 1.5em; /* Reduce size for better fit */
+        font-family: 'Comic Sans MS', Arial, sans-serif; font-size: 1.5em; /* Reduce size for better fit */
     }
 
     .desc {
@@ -173,7 +172,7 @@ input{
 /* Extra small screens (phones under 480px) */
 @media (max-width: 480px) {
     .titledesc {
-        font-family: 'Veteran Typewriter', Arial, sans-serif;
+        font-family: 'Comic Sans MS', Arial, sans-serif;
         font-size: 1.3em; /* Smaller text */
     }
 
