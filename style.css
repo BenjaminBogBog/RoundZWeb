@@ -21,8 +21,10 @@
     font-family: 'VeteranTypewriter';
     src: url('fonts/VeteranTypewriter.ttf') format('truetype'),
          url('fonts/VeteranTypewriter.woff2') format('woff2'), 
-         url('fonts/VeteranTypewriter.woff') format('woff'), font-weight: normal;
+         url('fonts/VeteranTypewriter.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 /* Header with Banner as Background */
 header {
