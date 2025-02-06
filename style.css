@@ -237,22 +237,50 @@ input{
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    display: inline-block;
-    margin: 50px 0;
-    position: relative;
-    pointer-events: auto; /* Enable interaction with the button */
+    display: flex; /* Allows better alignment */
+    justify-content: center; /* Centers text horizontally */
+    align-items: center; /* Centers text vertically */
+    margin: 50px auto; /* Center horizontally */
+    pointer-events: auto;
+    width: auto;
+    max-width: 90%;
+    text-wrap: nowrap;
+    min-height: 50px; /* Ensures button isn't too short */
 }
 
     .buy_button:hover {
-        opacity: 0.7; /* Makes the button 70% opaque */
-        background-color: rgba(255, 0, 0, 0.7); /* Translucent red */
+        opacity: 0.7;
+        background-color: rgba(255, 0, 0, 0.7);
     }
+
+/* Ensure the link container behaves properly */
 a {
-    display: block;
+    display: flex; /* Ensures button is properly contained */
+    text-decoration: none; /* Removes underline */
+    justify-content: center;
     text-align: center;
-    width: max-content; /* Ensures the link takes only the width of the content (the button) */
-    margin: 0 auto; /* Centers the link horizontally */
-    pointer-events: none; /* Disable interaction with the link itself */
+    width: max-content;
+    margin: 0 auto;
+    pointer-events: none;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .buy_button {
+        font-size: 1.2em;
+        padding: 12px 25px;
+        min-height: 45px; /* Keeps button height consistent */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .buy_button {
+        font-size: 1em;
+        padding: 10px 20px;
+        width: 100%;
+        max-width: 300px;
+        min-height: 40px; /* Prevents button from collapsing */
+    }
 }
 
 /* Ensure the video container is positioned correctly */
@@ -331,39 +359,94 @@ a {
     margin-right: 4em;
 }
     */
-.screenshot-container{
-    margin: 1.5em 1.5em 1.5em 1.5em;
+/* Gallery container */
+.gallery-container {
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Stack title and gallery vertically */
+    align-items: center; /* Center everything horizontally */
+    justify-content: center; /* Center everything vertically */
+    width: 100%; /* Full width of the container */
+    padding: 20px 0; /* Padding around the gallery */
+    box-sizing: border-box;
 }
 
-.screenshot{
-    width: 75vw;
-    height: auto;
-    image-rendering: pixelated;
-    align-self: center;
-    margin: 0.5em;
-}
-
-@media (max-width: 860px) {
-    .screenshot-container{
-        margin: 0;
-    }
-
-    .screenshot{
-        width: 100vw;
-    }
-}
-
+/* Gallery title */
 .gallerytitle {
-    font-family: 'VeteranTypewriter',Arial,sans-serif;
-    font-size: 4em;
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
+    font-size: 3em; /* Adjust font size */
     color: #a6a6a6;
-    text-align: center;
-    margin: 50px 0;
+    text-align: center; /* Center the title */
     text-transform: uppercase;
-    margin-left: 1.5em;
-    margin-top: 1.5em;
+    margin: 20px 0; /* Add margin to create space around the title */
+    width: 100%; /* Ensure title stretches full width */
+    box-sizing: border-box;
 }
-/*
+
+/* Gallery container for images */
+.gallery {
+    display: grid; /* Grid layout for the gallery */
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 10px; /* No space between images */
+    justify-items: stretch; /* Ensure items stretch to fill grid cells */
+    margin-top: 20px;
+    width: 100%; /* Full width for container */
+    padding: 0; /* Remove any padding */
+}
+
+/* Gallery item container */
+.gallery-item {
+    position: relative;
+    width: 100%; /* Full width inside grid cell */
+    height: 100%; /* Ensure height is 100% */
+    padding: 0; /* Remove padding */
+    box-sizing: border-box; /* Ensure padding/margins don't affect size */
+    overflow: hidden; /* Prevents image overflow */
+}
+
+    /* Image inside gallery item */
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the image covers the container */
+        display: block; /* Remove space below image */
+        margin: 0; /* Remove any margin */
+    }
+
+/* Text for image name on hover */
+.image-name {
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
+    position: absolute;
+    left: 50%;
+    bottom: 0; /* Align the name to the bottom */
+    transform: translateX(-50%); /* Center the name horizontally */
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-translucent black background */
+    color: #aa0000;
+    font-size: 1.5em;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show text on hover */
+.gallery-item:hover .image-name {
+    opacity: 1;
+}
+
+/* For tablet screens */
+@media (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr; /* 1 item per row */
+    }
+}
+
+        /*
 .subheading{
     font-family:FelixFont,Arial,sans-serif; 
     font-size: 3em;
