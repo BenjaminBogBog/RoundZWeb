@@ -7,23 +7,51 @@
     <link rel="stylesheet" href="./style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Veteran+Typewriter&display=swap" rel="stylesheet">
-    <script>
-        // Function to detect the browser language and switch text
-        window.onload = function () {
-            var userLang = navigator.language || navigator.userLanguage; // Get browser language
-            if (userLang.includes("es")) {
-                switchToSpanish(); // If language is Spanish, switch the page content
-            }
-        };
-
-        function switchToSpanish() {
-            // Switch content to Spanish
-            document.querySelector(".titledesc").innerHTML = "¿Cuántas <span class='highlighttitle'>Rondas</span> Puedes Sobrevivir?";
-            document.querySelector(".desc").innerHTML = "RoundZ es un intenso juego de supervivencia basado en rondas, donde el desafío crece con cada una. A medida que avanzan las rondas, los zombis se vuelven más fuertes, ganando más salud y atacando en oleadas cada vez mayores, poniendo a prueba tus habilidades de supervivencia al límite.";
-            document.querySelector(".buy_button").innerText = "Obtener RoundZ";
-            document.querySelector(".gallerytitle").innerText = "Galería";
+<script>
+    // Function to detect the browser language and switch text
+    window.onload = function () {
+        var userLang = navigator.language || navigator.userLanguage; // Get browser language
+        if (userLang.includes("es")) {
+            switchToSpanish(); // If language is Spanish, switch the page content
         }
-    </script>
+    };
+
+    function switchToSpanish() {
+        // Switch content to Spanish
+        document.querySelector(".titledesc").innerHTML = "¿Cuántas <span class='highlighttitle'>Rondas</span> Puedes Sobrevivir?";
+        document.querySelector(".desc").innerHTML = "RoundZ es un intenso juego de supervivencia basado en rondas, donde el desafío crece con cada una. A medida que avanzan las rondas, los zombis se vuelven más fuertes, ganando más salud y atacando en oleadas cada vez mayores, poniendo a prueba tus habilidades de supervivencia al límite.";
+        document.querySelector(".buy_button").innerText = "Obtener RoundZ";
+        document.querySelector(".gallerytitle").innerText = "Galería";
+
+        // Switch image names to Spanish
+        const imageNames = document.querySelectorAll('.image-name');
+        imageNames.forEach((item, index) => {
+            // Spanish translations for each image name
+            switch (index) {
+                case 0:
+                    item.textContent = "Primera sala";
+                    break;
+                case 1:
+                    item.textContent = "GAS Eye";
+                    break;
+                case 2:
+                    item.textContent = "Oleada de zombies";
+                    break;
+                case 3:
+                    item.textContent = "Rueda de la Libertad";
+                    break;
+                case 4:
+                    item.textContent = "Mejorando un Arma";
+                    break;
+                case 5:
+                    item.textContent = "Disparo en la Cabeza";
+                    break;
+            }
+        });
+
+    }
+</script>
+
 </head>
 <body>
 
@@ -155,7 +183,7 @@
                     </div>
                     <div class="gallery-item">
                         <img src="./content/ScreenshotShotgun.png" alt="Image 3">
-                        <div class="image-name">Shotgun RMB92</div>
+                        <div class="image-name">Zombie wave</div>
                     </div>
                     <div class="gallery-item">
                         <img src="./content/ScreenshotWheel.png" alt="Room1">
