@@ -158,6 +158,11 @@ input{
     position: relative;
     pointer-events: auto; /* Enable interaction with the button */
 }
+
+    .buy_button:hover {
+        opacity: 0.7; /* Makes the button 70% opaque */
+        background-color: rgba(255, 0, 0, 0.7); /* Translucent red */
+    }
 a {
     display: block;
     text-align: center;
@@ -165,17 +170,14 @@ a {
     margin: 0 auto; /* Centers the link horizontally */
     pointer-events: none; /* Disable interaction with the link itself */
 }
-/* Video container styling */
-.video-container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    position: relative;
-    margin: -30px auto 0 auto; /* Adjust top margin to push the video down */
-    width: 100%;
-    height: auto; /* Adjust based on video height */
-}
 
+/* Ensure the video container is positioned correctly */
+.video-container {
+    position: relative; /* Needed for absolute positioning of the button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Video Styling */
 .launchtrailer {
@@ -187,26 +189,23 @@ a {
     cursor: pointer; /* Makes the video clickable */
 }
 
-/* Mute Button Styling */
 .mute-button {
-    background-color: transparent; /* Transparent background */
-    border: none; /* No border */
-    color: white; /* White icon */
-    font-size: 3em; /* Larger icon size */
-    cursor: pointer; /* Makes the button look clickable */
-    position: absolute; /* Keeps the button inside the video */
-    top: 50%; /* Centers it vertically */
-    left: 50%; /* Centers it horizontally */
-    transform: translate(-50%, -50%); /* Adjust for perfect centering */
-    z-index: 10; /* Ensures the button is on top of the video */
-    display: inline-flex; /* Ensures the button holds the icon properly */
-    opacity: 0; /* Hide the button initially */
-    transition: opacity 0.3s ease, color 0.3s ease; /* Smooth transition for opacity and color */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to stay centered */
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 3em;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease-in-out;
 }
 
-/* Hover effect for video */
 .video-container:hover .mute-button {
-    opacity: 0.5; /* Makes the button more translucent when hovered */
+    opacity: 0.5; /* Button appears when hovering */
 }
 
 /* Change color when muted */
@@ -214,6 +213,29 @@ a {
     color: #ff0000; /* Red when muted */
 }
 
+/* Make the cursor 'default' when the button is hidden */
+.launchtrailer {
+    cursor: default; /* Default cursor when the video is not hovered */
+}
+
+    /* Make the cursor 'pointer' when the button is visible */
+    .launchtrailer:hover {
+        cursor: pointer; /* Pointer cursor when hovering over the video */
+    }
+
+        /* Transition cursor when button becomes visible */
+        .launchtrailer:hover ~ .mute-button {
+            cursor: pointer; /* Pointer cursor when the button is visible */
+        }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .mute-button {
+        font-size: 2em; /* Slightly smaller on mobile */
+        bottom: 5px; /* Adjust positioning */
+        right: 5px;
+    }
+}
 /*
 .title{
   color: white;

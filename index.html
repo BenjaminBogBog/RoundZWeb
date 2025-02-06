@@ -6,6 +6,7 @@
     <title>RoundZ</title>
     <link rel="stylesheet" href="./style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Veteran+Typewriter&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="logo-container">
@@ -31,9 +32,8 @@
                 <video class="launchtrailer" autoplay loop muted id="video" onclick="toggleMute()">
                     <source src="./content/TeaserTrailer1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
+                    <!-- Mute/Unmute Button (Invisible) -->
                 </video>
-
-                <!-- Mute/Unmute Button (Invisible) -->
                 <button id="unmuteButton" class="mute-button">
                     <span id="muteIcon" class="fas fa-volume-mute"></span>  <!-- Muted Icon Initially -->
                 </button>
@@ -64,34 +64,37 @@
                 let hoverTimeout;
                 let isHovered = false;
 
-                document.querySelector('.video-container').addEventListener('mouseenter', () => {
-                    isHovered = true;
-                    muteButton.style.opacity = '0.5'; // Make the button translucent on hover
-                    clearTimeout(hoverTimeout); // Clear any previous timeouts in case of fast movement
+                // Ensure that the button is shown when the user hovers directly over the video
+                document.querySelector('.launchtrailer').addEventListener('mouseenter', () => {
+                    muteButton.style.opacity = '0.5'; // Show the button when hovering over the video
+                    document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Set cursor to pointer when hovering over the video
+                    clearTimeout(hoverTimeout); // Clear any previous timeouts
 
                     // Set a timeout to hide the button after 1 second of hover
                     hoverTimeout = setTimeout(() => {
-                        if (isHovered) {
-                            muteButton.style.opacity = '0'; // Hide the button after 1 second of hover
-                        }
+                        muteButton.style.opacity = '0'; // Hide the button after 1 second of hover
+                        document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor when the button disappears
                     }, 1000);
                 });
 
-                document.querySelector('.video-container').addEventListener('mouseleave', () => {
-                    isHovered = false;
+                // Hide the button immediately when the mouse leaves the video
+                document.querySelector('.launchtrailer').addEventListener('mouseleave', () => {
                     clearTimeout(hoverTimeout); // Clear the timeout if the mouse leaves before 1 second
-                    muteButton.style.opacity = '0'; // Immediately hide the button when mouse leaves
+                    muteButton.style.opacity = '0'; // Immediately hide the button
+                    document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor when the button is hidden
                 });
 
-                // Reset opacity to 1 if the button is clicked
+                // Reset opacity when the button is clicked
                 muteButton.addEventListener('click', () => {
-                    muteButton.style.opacity = '1'; // Show the button when clicked to mute/unmute
+                    muteButton.style.opacity = '1'; // Keep the button visible when clicked to mute/unmute
+                    document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Show pointer cursor when button is visible
                 });
 
                 // Show the button again when the user moves the mouse on the video area
-                document.querySelector('.video-container').addEventListener('mousemove', () => {
+                document.querySelector('.launchtrailer').addEventListener('mousemove', () => {
                     if (muteButton.style.opacity == '0') {
                         muteButton.style.opacity = '0.5'; // Show the button with reduced opacity on mouse movement
+                        document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Show pointer cursor when hovering over the video
                     }
 
                     // Reset the hover timeout if the mouse is still moving
@@ -99,8 +102,10 @@
 
                     hoverTimeout = setTimeout(() => {
                         muteButton.style.opacity = '0'; // Hide after 1 second of inactivity
+                        document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor
                     }, 1000);
                 });
+
             </script>
 
             <!--
