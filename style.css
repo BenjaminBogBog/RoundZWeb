@@ -118,28 +118,63 @@ input{
 
     cursor: default;
 }
-    */
+/* Default styles for large screens */
 .titledesc {
-    font-family: 'Veteran Typewriter', Arial, sans-serif; /* Custom font */
-    font-size: 1.8em; /* Larger font size for the title */
+    font-family: 'Veteran Typewriter', Arial, sans-serif;
+    font-size: 1.8em;
     color: white;
     text-transform: uppercase;
-    text-align: center; /* Centers the title */
+    text-align: center;
     margin-top: 1.5em;
-    margin-bottom: 0.5em; /* Reduced margin to bring it closer to the description */
+    margin-bottom: 0.5em;
 }
-.titledesc .highlighttitle {
-    color: red; /* Red color for the word "Rounds" */
-}
+
+    .titledesc .highlighttitle {
+        color: red;
+    }
+
 .desc {
-    font-family: 'Veteran Typewriter', Arial, sans-serif; /* Custom font */
+    font-family: 'Veteran Typewriter', Arial, sans-serif;
     font-size: 1.5em;
     color: white;
-    margin: auto; /* Centers the block */
+    margin: auto;
     width: 80vw;
-    text-align: center; /* Centers the text inside the block */
-    padding: 0 200px; /* Adds padding on both left and right */
-    box-sizing: border-box; /* Ensures padding is included inside width */
+    text-align: center;
+    padding: 0 200px;
+    box-sizing: border-box;
+}
+/* Responsive for tablets */
+@media (max-width: 1024px) {
+    .desc {
+        font-size: 1.3em;
+        padding: 0 100px;
+    }
+}
+
+/* Responsive for mobile devices */
+@media (max-width: 768px) {
+    .titledesc {
+        font-size: 1.5em; /* Reduce size for better fit */
+    }
+
+    .desc {
+        font-size: 1.2em;
+        width: 90vw; /* More width for smaller screens */
+        padding: 0 50px;
+    }
+}
+
+/* Extra small screens (phones under 480px) */
+@media (max-width: 480px) {
+    .titledesc {
+        font-size: 1.3em; /* Smaller text */
+    }
+
+    .desc {
+        font-size: 1em;
+        width: 95vw;
+        padding: 0 20px;
+    }
 }
 
 /* Button styling */
