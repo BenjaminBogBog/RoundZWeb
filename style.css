@@ -64,6 +64,47 @@ body {
     height: 75vh;
     margin: 1.5em;
 }
+/* Media Queries for Responsiveness */
+
+/* When the screen width is less than or equal to 768px (Tablet and mobile devices) */
+@media (max-width: 768px) {
+    /* Adjust the header's height */
+    header {
+        height: 300px; /* Smaller header for mobile/tablet */
+        background-position: center center; /* Center the image */
+    }
+
+    /* Adjust the logo size */
+    .logo {
+        max-width: 300px; /* Smaller logo for smaller devices */
+        margin-top: -100px; /* Adjust the position if needed */
+    }
+
+    /* Adjust logo container height */
+    .logo-container {
+        height: 60vh; /* Reduce the height of the logo container */
+    }
+}
+
+/* When the screen width is less than or equal to 480px (Mobile devices) */
+@media (max-width: 480px) {
+    /* Further reduce the header height */
+    header {
+        height: 200px; /* Even smaller header for mobile */
+        background-position: center center; /* Center the image */
+    }
+
+    /* Further reduce logo size */
+    .logo {
+        max-width: 200px; /* Smaller logo */
+        margin-top: -50px; /* Adjust the position */
+    }
+
+    /* Further reduce the height of the logo container */
+    .logo-container {
+        height: 50vh; /* Even smaller container */
+    }
+}
 /*
 @media (max-width: 860px) {
     .logo-container{
@@ -123,9 +164,9 @@ input{
 }
 /* Default styles for large screens */
 .titledesc {
-    font-family: 'Comic Sans MS', Arial, sans-serif;
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
     font-size: 1.8em;
-    color: white;
+    color: #a6a6a6;
     text-transform: uppercase;
     text-align: center;
     margin-top: 1.5em;
@@ -133,13 +174,13 @@ input{
 }
 
     .titledesc .highlighttitle {
-        color: red;
+        color: #aa0000;
     }
 
 .desc {
-    font-family: 'Veteran Typewriter', Arial, sans-serif;
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
     font-size: 1.5em;
-    color: white;
+    color: #a6a6a6;
     margin: auto;
     width: 80vw;
     text-align: center;
@@ -151,18 +192,19 @@ input{
     .desc {
         font-size: 1.3em;
         padding: 0 100px;
-        font-family: 'Veteran Typewriter', Arial, sans-serif;
+        font-family: 'VeteranTypewriter', Arial, sans-serif;
     }
 }
 
 /* Responsive for mobile devices */
 @media (max-width: 768px) {
     .titledesc {
-        font-family: 'Comic Sans MS', Arial, sans-serif; font-size: 1.5em; /* Reduce size for better fit */
+        font-family: 'VeteranTypewriter', Arial, sans-serif;
+        font-size: 1.5em; /* Reduce size for better fit */
     }
 
     .desc {
-        font-family: 'Veteran Typewriter', Arial, sans-serif;
+        font-family: 'VeteranTypewriter', Arial, sans-serif;
         font-size: 1.2em;
         width: 90vw; /* More width for smaller screens */
         padding: 0 50px;
@@ -172,7 +214,7 @@ input{
 /* Extra small screens (phones under 480px) */
 @media (max-width: 480px) {
     .titledesc {
-        font-family: 'Comic Sans MS', Arial, sans-serif;
+        font-family: 'VeteranTypewriter', Arial, sans-serif;
         font-size: 1.3em; /* Smaller text */
     }
 
@@ -180,17 +222,17 @@ input{
         font-size: 1em;
         width: 95vw;
         padding: 0 20px;
-        font-family: 'Veteran Typewriter', Arial, sans-serif;
+        font-family: 'VeteranTypewriter', Arial, sans-serif;
     }
 }
 
 /* Button styling */
 .buy_button {
-    background-color: red;
+    background-color: #aa0000;
     color: white;
     padding: 15px 30px;
     font-size: 1.5em;
-    font-family: 'Veteran Typewriter', Arial, sans-serif;
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -238,7 +280,7 @@ a {
     transform: translate(-50%, -50%); /* Adjust to stay centered */
     background-color: transparent;
     border: none;
-    color: white;
+    color: #a6a6a6;
     font-size: 3em;
     cursor: pointer;
     z-index: 10;
@@ -311,10 +353,12 @@ a {
     }
 }
 
-.heading{
-    font-family:FelixFont,Arial,sans-serif; 
+.gallerytitle {
+    font-family: 'VeteranTypewriter',Arial,sans-serif;
     font-size: 4em;
-    color:white;
+    color: #a6a6a6;
+    text-align: center;
+    margin: 50px 0;
     text-transform: uppercase;
     margin-left: 1.5em;
     margin-top: 1.5em;

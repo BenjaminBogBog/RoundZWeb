@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="./style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Veteran+Typewriter&display=swap" rel="stylesheet">
+    <script>
+        // Function to detect the browser language and switch text
+        window.onload = function () {
+            var userLang = navigator.language || navigator.userLanguage; // Get browser language
+            if (userLang.includes("es")) {
+                switchToSpanish(); // If language is Spanish, switch the page content
+            }
+        };
+
+        function switchToSpanish() {
+            // Switch content to Spanish
+            document.querySelector(".titledesc").innerHTML = "¿Cuántas <span class='highlighttitle'>Rondas</span> Puedes Sobrevivir?";
+            document.querySelector(".desc").innerHTML = "RoundZ es un intenso juego de supervivencia basado en rondas, donde el desafío crece con cada una. A medida que avanzan las rondas, los zombis se vuelven más fuertes, ganando más salud y atacando en oleadas cada vez mayores, poniendo a prueba tus habilidades de supervivencia al límite.";
+            document.querySelector(".buy_button").innerText = "Obtener RoundZ";
+            document.querySelector(".gallerytitle").innerText = "Galería";
+        }
+    </script>
 </head>
 <body>
     <div class="logo-container">
@@ -133,7 +150,7 @@
         </form>
     </div>
     -->
-            <h1 class="heading">Gallery</h1>
+            <h1 class="gallerytitle">Gallery</h1>
             <div class="screenshot-container">
                 <div class="screenshot">
 
