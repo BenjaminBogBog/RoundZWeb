@@ -55,97 +55,89 @@
 </head>
 <body>
 
-            <header>
-                <img src="./content/LibraryLogo.png" alt="RoundZ Logo" class="logo">
-            </header>
-            <div class="titledesc">
-                How Many <span class="highlighttitle">Rounds</span> Can You Go?
-            </div>
-            <p class="desc">RoundZ is an intense, round-based survival zombie game where the challenge grows with each round. As the rounds progress, the zombies become tougher, gaining more health and attacking in increasingly larger waves, testing your survival skills to the limit.</p>
-            <a href="https://store.steampowered.com/?l" target="_blank">
-                <button class="buy_button">Get RoundZ</button>
-            </a>
-            <div class="video-container">
-                <video class="launchtrailer" autoplay loop muted id="video" onclick="toggleMute()">
-                    <source src="./content/TeaserTrailer1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                    <!-- Mute/Unmute Button (Invisible) -->
-                </video>
-                <button id="unmuteButton" class="mute-button">
-                    <span id="muteIcon" class="fas fa-volume-mute"></span>  <!-- Muted Icon Initially -->
-                </button>
-            </div>
+    <header>
+        <img src="./content/LibraryLogo.png" alt="RoundZ Logo" class="logo">
+    </header>
+    <div class="titledesc">
+        How Many <span class="highlighttitle">Rounds</span> Can You Go?
+    </div>
+    <p class="desc">RoundZ is an intense, round-based survival zombie game where the challenge grows with each round. As the rounds progress, the zombies become tougher, gaining more health and attacking in increasingly larger waves, testing your survival skills to the limit.</p>
+    <a href="https://store.steampowered.com/app/3282690/RoundZ/" target="_blank">
+        <button class="buy_button">Get RoundZ</button>
+    </a>
+    <div class="video-container">
+        <!-- First Video -->
+        <video class="launchtrailer" autoplay loop muted id="video1" onclick="toggleMute()">
+            <source src="./content/TeaserTrailer1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
-            <script>
-                // Toggle Mute/Unmute when video is clicked
-                function toggleMute() {
-                    var video = document.getElementById("video");
-                    var muteIcon = document.getElementById("muteIcon");
+        <!-- Mute/Unmute Button -->
+        <button id="unmuteButton" class="mute-button">
+            <span id="muteIcon" class="fas fa-volume-mute"></span> <!-- Muted Icon Initially -->
+        </button>
 
-                    // Toggle mute state
-                    if (video.muted) {
-                        video.muted = false;
-                        muteIcon.classList.remove("fa-volume-mute");
-                        muteIcon.classList.add("fa-volume-up");  // Unmuted icon
-                    } else {
-                        video.muted = true;
-                        muteIcon.classList.remove("fa-volume-up");
-                        muteIcon.classList.add("fa-volume-mute");  // Muted icon
-                    }
-                }
+    </div>
 
-                // Get the mute button element
-                const muteButton = document.getElementById("unmuteButton");
+    <script>
+        // Toggle Mute/Unmute when video is clicked
+        function toggleMute() {
+            var video = document.querySelector('video:not([style*="display: none"])'); // Select the visible video
+            var muteIcon = document.getElementById("muteIcon");
 
-                // Function to handle mouse hover timing
-                let hoverTimeout;
-                let isHovered = false;
+            // Toggle mute state
+            if (video.muted) {
+                video.muted = false;
+                muteIcon.classList.remove("fa-volume-mute");
+                muteIcon.classList.add("fa-volume-up");  // Unmuted icon
+            } else {
+                video.muted = true;
+                muteIcon.classList.remove("fa-volume-up");
+                muteIcon.classList.add("fa-volume-mute");  // Muted icon
+            }
+        }
 
-                // Ensure that the button is shown when the user hovers directly over the video
-                document.querySelector('.launchtrailer').addEventListener('mouseenter', () => {
-                    muteButton.style.opacity = '0.5'; // Show the button when hovering over the video
-                    document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Set cursor to pointer when hovering over the video
-                    clearTimeout(hoverTimeout); // Clear any previous timeouts
+        // Mouse hover event for the mute button
+        const muteButton = document.getElementById("unmuteButton");
+        let hoverTimeout;
+        document.querySelector('.launchtrailer').addEventListener('mouseenter', () => {
+            muteButton.style.opacity = '0.5'; // Show the button when hovering over the video
+            document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Set cursor to pointer when hovering over the video
+            clearTimeout(hoverTimeout); // Clear any previous timeouts
 
-                    // Set a timeout to hide the button after 1 second of hover
-                    hoverTimeout = setTimeout(() => {
-                        muteButton.style.opacity = '0'; // Hide the button after 1 second of hover
-                        document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor when the button disappears
-                    }, 1000);
-                });
+            hoverTimeout = setTimeout(() => {
+                muteButton.style.opacity = '0'; // Hide the button after 1 second of hover
+                document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor when the button disappears
+            }, 1000);
+        });
 
-                // Hide the button immediately when the mouse leaves the video
-                document.querySelector('.launchtrailer').addEventListener('mouseleave', () => {
-                    clearTimeout(hoverTimeout); // Clear the timeout if the mouse leaves before 1 second
-                    muteButton.style.opacity = '0'; // Immediately hide the button
-                    document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor when the button is hidden
-                });
+        document.querySelector('.launchtrailer').addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+            muteButton.style.opacity = '0';
+            document.querySelector('.launchtrailer').style.cursor = 'default';
+        });
 
-                // Reset opacity when the button is clicked
-                muteButton.addEventListener('click', () => {
-                    muteButton.style.opacity = '1'; // Keep the button visible when clicked to mute/unmute
-                    document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Show pointer cursor when button is visible
-                });
+        muteButton.addEventListener('click', () => {
+            muteButton.style.opacity = '1'; // Keep the button visible when clicked to mute/unmute
+            document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Show pointer cursor when button is visible
+        });
 
-                // Show the button again when the user moves the mouse on the video area
-                document.querySelector('.launchtrailer').addEventListener('mousemove', () => {
-                    if (muteButton.style.opacity == '0') {
-                        muteButton.style.opacity = '0.5'; // Show the button with reduced opacity on mouse movement
-                        document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Show pointer cursor when hovering over the video
-                    }
+        document.querySelector('.launchtrailer').addEventListener('mousemove', () => {
+            if (muteButton.style.opacity == '0') {
+                muteButton.style.opacity = '0.5'; // Show the button with reduced opacity on mouse movement
+                document.querySelector('.launchtrailer').style.cursor = 'pointer'; // Show pointer cursor when hovering over the video
+            }
 
-                    // Reset the hover timeout if the mouse is still moving
-                    clearTimeout(hoverTimeout);
+            clearTimeout(hoverTimeout);
+            hoverTimeout = setTimeout(() => {
+                muteButton.style.opacity = '0'; // Hide after 1 second of inactivity
+                document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor
+            }, 1000);
+        });
+    </script>
 
-                    hoverTimeout = setTimeout(() => {
-                        muteButton.style.opacity = '0'; // Hide after 1 second of inactivity
-                        document.querySelector('.launchtrailer').style.cursor = 'default'; // Reset the cursor
-                    }, 1000);
-                });
 
-            </script>
-
-            <!--
+    <!--
     <div id="mc_embed_signup">
         <form action="https://gmail.us7.list-manage.com/subscribe/post?u=d68b80da10ae4882e055ce69e&amp;id=23eaf59469&amp;f_id=007ea3e3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self" novalidate="">
             <div id="mc_embed_signup_scroll">
@@ -170,37 +162,37 @@
         </form>
     </div>
     -->
-            <div class="gallery-container">
-                <h1 class="gallerytitle">Gallery</h1>
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="./content/ScreenshotRoom1.png" alt="Room1">
-                        <div class="image-name">1ºst Room</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="./content/ScreenshotGasEye.png" alt="Image 2">
-                        <div class="image-name">GAS Eye</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="./content/ScreenshotShotgun.png" alt="Image 3">
-                        <div class="image-name">Zombie wave</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="./content/ScreenshotWheel.png" alt="Room1">
-                        <div class="image-name">Liberty Wheel</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="./content/ScreenshotUpgrade.png" alt="Image 2">
-                        <div class="image-name">Upgrading Weapon</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="./content/ScreemshotHeadOff.png" alt="Image 3">
-                        <div class="image-name">Headshot</div>
-                    </div>
-                </div>
+    <div class="gallery-container">
+        <h1 class="gallerytitle">Gallery</h1>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="./content/ScreenshotRoom1.png" alt="Room1">
+                <div class="image-name">1ºst Room</div>
             </div>
+            <div class="gallery-item">
+                <img src="./content/ScreenshotGasEye.png" alt="Image 2">
+                <div class="image-name">GAS Eye</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./content/ScreenshotShotgun.png" alt="Image 3">
+                <div class="image-name">Zombie wave</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./content/ScreenshotWheel.png" alt="Room1">
+                <div class="image-name">Liberty Wheel</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./content/ScreenshotUpgrade.png" alt="Image 2">
+                <div class="image-name">Upgrading Weapon</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./content/ScreemshotHeadOff.png" alt="Image 3">
+                <div class="image-name">Headshot</div>
+            </div>
+        </div>
+    </div>
 
-            <br>
+    <br>
 
-    </body>
+</body>
  </html>

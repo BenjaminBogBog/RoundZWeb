@@ -283,24 +283,27 @@ a {
     }
 }
 
-/* Ensure the video container is positioned correctly */
+/* Container for the video */
 .video-container {
-    position: relative; /* Needed for absolute positioning of the button */
+    position: relative; /* Make sure the container is positioned for absolute child positioning */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Horizontally center the video */
+    align-items: center; /* Vertically center the video */
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    padding: 20px; /* Add margins around the video */
+    box-sizing: border-box; /* Include padding in the container's total width/height */
 }
 
-/* Video Styling */
+/* Video styling */
 .launchtrailer {
-    display: block;
-    margin: 20px auto;
-    max-width: 100%;
-    height: auto;
-    position: relative; /* Keeps the icon on top of the video */
-    cursor: pointer; /* Makes the video clickable */
+    width: auto; /* Allow video to maintain aspect ratio */
+    max-width: 90%; /* Allow video to take up to 90% of the width */
+    max-height: 80vh; /* Limit the height to 80% of viewport height */
+    cursor: pointer; /* Make only the video clickable */
 }
 
+/* Mute Button Styling */
 .mute-button {
     position: absolute;
     top: 50%; /* Center vertically */
@@ -312,12 +315,15 @@ a {
     font-size: 3em;
     cursor: pointer;
     z-index: 10;
-    opacity: 0; /* Hidden by default */
+    pointer-events: none; /* Button is not clickable by default */
+    opacity: 0; /* Button hidden by default */
     transition: opacity 0.3s ease-in-out;
 }
 
-.video-container:hover .mute-button {
-    opacity: 0.5; /* Button appears when hovering */
+/* Show the button when hovering the video */
+.video-container:hover .launchtrailer:hover + .mute-button {
+    opacity: 1; /* Make the button visible when hovering over the video */
+    pointer-events: auto; /* Enable button clicks */
 }
 
 /* Change color when muted */
@@ -327,6 +333,7 @@ a {
 
 /* Make the cursor 'default' when the button is hidden */
 .launchtrailer {
+
     cursor: default; /* Default cursor when the video is not hovered */
 }
 
@@ -340,6 +347,7 @@ a {
             cursor: pointer; /* Pointer cursor when the button is visible */
         }
 
+
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .mute-button {
@@ -347,7 +355,14 @@ a {
         bottom: 5px; /* Adjust positioning */
         right: 5px;
     }
+
+    .right-button {
+        font-size: 1.5em;
+        top: 60%; /* Adjust position on smaller screens */
+    }
 }
+
+
 /*
 .title{
   color: white;
