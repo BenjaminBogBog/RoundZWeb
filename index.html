@@ -66,18 +66,53 @@
         <button class="buy_button">Get RoundZ</button>
     </a>
     <div class="video-container">
-        <!-- First Video -->
-        <video class="launchtrailer" autoplay loop muted id="video1" onclick="toggleMute()">
-            <source src="./content/TeaserTrailer1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
-        <!-- Mute/Unmute Button -->
-        <button id="unmuteButton" class="mute-button">
-            <span id="muteIcon" class="fas fa-volume-mute"></span> <!-- Muted Icon Initially -->
-        </button>
-
+        <div class="thumbnail-container">
+            <img class="EarlyAccessTrailerThumbnail"
+                 src="https://img.youtube.com/vi/Z7B7J1X2dSc/maxresdefault.jpg"
+                 alt="YouTube Video Thumbnail"
+                 width="560">
+            <div class="play-button-overlay">
+                <img src="./content/playbuttonicon.png" alt="Play Button" class="play-button">
+            </div>
+        </div>
+        <iframe class="EarlyAccessTrailerEmbed"
+                width="560"
+                height="315"
+                title="YouTube video player"
+                frameborder="1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const thumbnail = document.querySelector('.EarlyAccessTrailerThumbnail');
+            const iframe = document.querySelector('.EarlyAccessTrailerEmbed');
+            const thumbnailContainer = document.querySelector('.thumbnail-container');
+            const playButton = document.querySelector('.play-button');  // Select the play button
+
+            // Initially hide the iframe
+            iframe.style.display = 'none';
+
+            // Function to start the video
+            function startVideo() {
+                // Hide the thumbnail and play button
+                thumbnailContainer.style.display = 'none';
+
+                // Set the iframe's src to include autoplay
+                iframe.src = 'https://www.youtube.com/embed/Z7B7J1X2dSc?autoplay=1&modestbranding=1&showinfo=0&controls=1&disablekb=1&fs=0&rel=0';
+
+                // Show the iframe (video)
+                iframe.style.display = 'block';
+            }
+
+            // Add click event to the thumbnail
+            thumbnail.addEventListener('click', startVideo);
+
+            // Add click event to the play button
+            playButton.addEventListener('click', startVideo);
+        });
+    </script>
 
     <script>
         // Toggle Mute/Unmute when video is clicked
