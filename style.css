@@ -283,40 +283,100 @@ a {
     }
 }
 
-/* Container for the video */
+/* The video library container */
+.video-library {
+    display: flex;
+    justify-content: center; /* Centers the videos horizontally */
+    gap: 40px; /* Reduces the space between videos */
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap; /* Ensures responsiveness */
+
+}
+
+/* Title container */
+.title-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0px; /* Adds space below the title */
+}
+
+/* Video container */
 .video-container {
-    position: relative;
+    flex-direction: column;
+    align-items: center; /* Centers content inside each video container */
     width: 560px;
-    height: 315px;
-    margin: auto; /* Centers the video */
+    height: 430px; /* Ensures both video containers have the same height */
+    box-sizing: border-box; /* Ensures padding and borders are included */
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Prevent content from overflowing */
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+    /* Show title on hover */
+    .video-container:hover .video-title {
+        opacity: 1;
+        transform: translateY(0); /* Move it up into view */
+    }
+/* Video title */
+.videoheader {
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
+    font-size: 3em; /* Adjust font size */
+    color: #a6a6a6;
+    text-align: center; /* Center the title */
+    text-transform: uppercase;
+    margin: 20px 0; /* Add margin to create space around the title */
+    width: 100%; /* Ensure title stretches full width */
+    box-sizing: border-box;
+}
+/* Style for the video title */
+.video-title {
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
+    position: absolute;
+    bottom: 1px; /* Align with the bottom but not over the border */
+    left: 1px; /* Align with the left but not over the border */
+    width: calc(100% - 2px); /* Reduce width to not cover the border */
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 24px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;
 }
 .thumbnail-container {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 315px; /* Set a fixed height for the thumbnail container */
 }
-/* The play button overlay */
+
 .play-button-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    filter: brightness(220%); /* Increases the brightness by 50% */
     z-index: 10; /* Ensure it appears on top of the thumbnail */
 }
 
-/* Play button image */
 .play-button {
-    width: 60px;
+    width: 80px;
     height: 60px;
+    opacity: 80%;
+    filter: saturate(0%); /* Decrease saturation */
     cursor: pointer; /* Ensure the play button is clickable */
 }
+
 .EarlyAccessTrailerEmbed {
     width: 100%;
-    height: 100%;
+    height: 315px; /* Set a fixed height for the embedded video */
     border-radius: 10px;
     display: none; /* Hidden by default */
 }
-/* Style for the thumbnail */
+
 .EarlyAccessTrailerThumbnail {
     width: 100%;
     height: 100%;
@@ -325,13 +385,100 @@ a {
     border: 1px solid #ccc; /* Add a border with color */
     box-sizing: border-box; /* Ensures padding and border are included in the element's total width/height */
 }
-    /* Hover effect for the thumbnail */
+
     .EarlyAccessTrailerThumbnail:hover {
-        transform: scale(1.05); /* Slight zoom effect */
         opacity: 0.8; /* Slight transparency effect */
     }
 
+.thumbnail-container:hover .play-button {
+    opacity: 0.4; /* Adjust the opacity (0 = invisible, 1 = fully visible) */
+}
+.gallery-container {
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Stack title and gallery vertically */
+    align-items: center; /* Center everything horizontally */
+    justify-content: center; /* Center everything vertically */
+    width: 100%; /* Full width of the container */
+    padding: 20px 0; /* Padding around the gallery */
+    box-sizing: border-box;
+}
 
+/* Gallery title */
+.gallerytitle {
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
+    font-size: 3em; /* Adjust font size */
+    color: #a6a6a6;
+    text-align: center; /* Center the title */
+    text-transform: uppercase;
+    margin: 0px 0; /* Add margin to create space around the title */
+    margin-top: 0px;
+    width: 100%; /* Ensure title stretches full width */
+    box-sizing: border-box;
+}
+
+/* Gallery container for images */
+.gallery {
+    display: grid; /* Grid layout for the gallery */
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 10px; /* No space between images */
+    justify-items: stretch; /* Ensure items stretch to fill grid cells */
+    margin-top: 20px;
+    width: 100%; /* Full width for container */
+    padding: 0; /* Remove any padding */
+}
+
+/* Gallery item container */
+.gallery-item {
+    position: relative;
+    width: 100%; /* Full width inside grid cell */
+    height: 100%; /* Ensure height is 100% */
+    padding: 0; /* Remove padding */
+    box-sizing: border-box; /* Ensure padding/margins don't affect size */
+    overflow: hidden; /* Prevents image overflow */
+}
+
+    /* Image inside gallery item */
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the image covers the container */
+        display: block; /* Remove space below image */
+        margin: 0; /* Remove any margin */
+    }
+
+/* Text for image name on hover */
+.image-name {
+    font-family: 'VeteranTypewriter', Arial, sans-serif;
+    position: absolute;
+    left: 50%;
+    bottom: 0; /* Align the name to the bottom */
+    transform: translateX(-50%); /* Center the name horizontally */
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-translucent black background */
+    color: #aa0000;
+    font-size: 1.5em;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show text on hover */
+.gallery-item:hover .image-name {
+    opacity: 1;
+}
+
+/* For tablet screens */
+@media (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr; /* 1 item per row */
+    }
+}
 /* Mute Button Styling 
 .mute-button {
     position: absolute;
@@ -404,91 +551,7 @@ a {
 }
     */
 /* Gallery container */
-.gallery-container {
-    display: flex; /* Use flexbox to center content */
-    flex-direction: column; /* Stack title and gallery vertically */
-    align-items: center; /* Center everything horizontally */
-    justify-content: center; /* Center everything vertically */
-    width: 100%; /* Full width of the container */
-    padding: 20px 0; /* Padding around the gallery */
-    box-sizing: border-box;
-}
 
-/* Gallery title */
-.gallerytitle {
-    font-family: 'VeteranTypewriter', Arial, sans-serif;
-    font-size: 3em; /* Adjust font size */
-    color: #a6a6a6;
-    text-align: center; /* Center the title */
-    text-transform: uppercase;
-    margin: 20px 0; /* Add margin to create space around the title */
-    width: 100%; /* Ensure title stretches full width */
-    box-sizing: border-box;
-}
-
-/* Gallery container for images */
-.gallery {
-    display: grid; /* Grid layout for the gallery */
-    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
-    gap: 10px; /* No space between images */
-    justify-items: stretch; /* Ensure items stretch to fill grid cells */
-    margin-top: 20px;
-    width: 100%; /* Full width for container */
-    padding: 0; /* Remove any padding */
-}
-
-/* Gallery item container */
-.gallery-item {
-    position: relative;
-    width: 100%; /* Full width inside grid cell */
-    height: 100%; /* Ensure height is 100% */
-    padding: 0; /* Remove padding */
-    box-sizing: border-box; /* Ensure padding/margins don't affect size */
-    overflow: hidden; /* Prevents image overflow */
-}
-
-    /* Image inside gallery item */
-    .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensure the image covers the container */
-        display: block; /* Remove space below image */
-        margin: 0; /* Remove any margin */
-    }
-
-/* Text for image name on hover */
-.image-name {
-    font-family: 'VeteranTypewriter', Arial, sans-serif;
-    position: absolute;
-    left: 50%;
-    bottom: 0; /* Align the name to the bottom */
-    transform: translateX(-50%); /* Center the name horizontally */
-    background-color: rgba(0, 0, 0, 0.9); /* Semi-translucent black background */
-    color: #aa0000;
-    font-size: 1.5em;
-    padding: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-/* Show text on hover */
-.gallery-item:hover .image-name {
-    opacity: 1;
-}
-
-/* For tablet screens */
-@media (max-width: 1024px) {
-    .gallery {
-        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
-    }
-}
-
-/* For mobile screens */
-@media (max-width: 768px) {
-    .gallery {
-        grid-template-columns: 1fr; /* 1 item per row */
-    }
-}
 
         /*
 .subheading{

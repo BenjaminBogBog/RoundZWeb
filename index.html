@@ -21,8 +21,22 @@
         document.querySelector(".titledesc").innerHTML = "¿Cuántas <span class='highlighttitle'>Rondas</span> Puedes Sobrevivir?";
         document.querySelector(".desc").innerHTML = "RoundZ es un intenso juego de supervivencia basado en rondas, donde el desafío crece con cada una. A medida que avanzan las rondas, los zombis se vuelven más fuertes, ganando más salud y atacando en oleadas cada vez mayores, poniendo a prueba tus habilidades de supervivencia al límite.";
         document.querySelector(".buy_button").innerText = "Obtener RoundZ";
+        document.querySelector(".videotitle").innerText = "Biblioteca de Videos";
         document.querySelector(".gallerytitle").innerText = "Galería";
 
+        // Switch image names to Spanish
+        const imageNames = document.querySelectorAll('.video-title');
+        imageNames.forEach((item, index) => {
+            // Spanish translations for each image name
+            switch (index) {
+                case 0:
+                    item.textContent = "Trailer del Acceso Anticipado";
+                    break;
+                case 1:
+                    item.textContent = "Teaser Trailer";
+                    break;
+            }
+        });
         // Switch image names to Spanish
         const imageNames = document.querySelectorAll('.image-name');
         imageNames.forEach((item, index) => {
@@ -65,72 +79,99 @@
     <a href="https://store.steampowered.com/app/3282690/RoundZ/" target="_blank">
         <button class="buy_button">Get RoundZ</button>
     </a>
-    <div class="video-container">
-        <div class="thumbnail-container">
-            <img class="EarlyAccessTrailerThumbnail"
-                 src="https://img.youtube.com/vi/Z7B7J1X2dSc/maxresdefault.jpg"
-                 alt="YouTube Video Thumbnail"
-                 width="560">
-            <div class="play-button-overlay">
-                <img src="./content/playbuttonicon.png" alt="Play Button" class="play-button">
-            </div>
+    <div class="video-library">
+        <!-- Title Container -->
+        <div class="title-container">
+            <h1 class="videoheader">Video Library</h1>
         </div>
-        <iframe class="EarlyAccessTrailerEmbed"
-                width="560"
-                height="315"
-                title="YouTube video player"
-                frameborder="1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-        </iframe>
+
+        <!-- First Video Container -->
+        <div class="video-container">
+            <div class="thumbnail-container">
+                <img class="EarlyAccessTrailerThumbnail"
+                     src="https://img.youtube.com/vi/Z7B7J1X2dSc/maxresdefault.jpg"
+                     alt="YouTube Video Thumbnail"
+                     width="560">
+                <div class="play-button-overlay">
+                    <img src="./content/playbuttonicon.png" alt="Play Button" class="play-button">
+                </div>
+                <div class="video-title">Early Access Trailer</div> <!-- Title -->
+            </div>
+            <iframe class="EarlyAccessTrailerEmbed"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/Z7B7J1X2dSc?autoplay=1&modestbranding=1&showinfo=0&controls=1&disablekb=1&fs=0&rel=0"
+                    title="YouTube video player"
+                    frameborder="1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Second Video Container -->
+        <div class="video-container">
+            <div class="thumbnail-container">
+                <img class="EarlyAccessTrailerThumbnail"
+                     src="./content/LibraryHeader.png"
+                     alt="YouTube Video Thumbnail"
+                     width="560">
+                <div class="play-button-overlay">
+                    <img src="./content/playbuttonicon.png" alt="Play Button" class="play-button">
+                </div>
+                <div class="video-title">Teaser Trailer</div> <!-- Title -->
+            </div>
+            <iframe class="EarlyAccessTrailerEmbed"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/O9yzbeUDZf8?autoplay=1&modestbranding=1&showinfo=0&controls=1&disablekb=1&fs=0&rel=0"
+                    title="YouTube video player"
+                    frameborder="1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+        </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const thumbnail = document.querySelector('.EarlyAccessTrailerThumbnail');
-            const iframe = document.querySelector('.EarlyAccessTrailerEmbed');
-            const thumbnailContainer = document.querySelector('.thumbnail-container');
-            const playButton = document.querySelector('.play-button');  // Select the play button
+            // Select all video containers
+            document.querySelectorAll('.video-container').forEach(function (videoContainer, index) {
+                const thumbnail = videoContainer.querySelector('.EarlyAccessTrailerThumbnail');
+                const iframe = videoContainer.querySelector('.EarlyAccessTrailerEmbed');
+                const thumbnailContainer = videoContainer.querySelector('.thumbnail-container');
+                const playButtonOverlay = videoContainer.querySelector('.play-button-overlay');  // Play button overlay
 
-            // Initially hide the iframe
-            iframe.style.display = 'none';
+                // Initially hide the iframe
+                iframe.style.display = 'none';
 
-            // Function to start the video
-            function startVideo() {
-                // Hide the thumbnail and play button
-                thumbnailContainer.style.display = 'none';
+                // Function to start the video (hide thumbnail and show iframe)
+                function startVideo() {
+                    // Hide the thumbnail and play button overlay
+                    thumbnailContainer.style.display = 'none';
 
-                // Set the iframe's src to include autoplay
-                iframe.src = 'https://www.youtube.com/embed/Z7B7J1X2dSc?autoplay=1&modestbranding=1&showinfo=0&controls=1&disablekb=1&fs=0&rel=0';
+                    // Set the iframe's src to include autoplay for the specific video
+                    // Adjust the URL based on the index of the video container
+                    if (index === 0) {
+                        iframe.src = 'https://www.youtube.com/embed/Z7B7J1X2dSc?autoplay=1&modestbranding=1&showinfo=0&controls=1&disablekb=1&fs=0&rel=0';
+                    } else if (index === 1) {
+                        iframe.src = 'https://www.youtube.com/embed/O9yzbeUDZf8?autoplay=1&modestbranding=1&showinfo=0&controls=1&disablekb=1&fs=0&rel=0';
+                    }
 
-                // Show the iframe (video)
-                iframe.style.display = 'block';
-            }
+                    // Show the iframe (video)
+                    iframe.style.display = 'block';
+                }
 
-            // Add click event to the thumbnail
-            thumbnail.addEventListener('click', startVideo);
+                // Add click event to the thumbnail
+                thumbnail.addEventListener('click', startVideo);
 
-            // Add click event to the play button
-            playButton.addEventListener('click', startVideo);
+                // Add click event to the play button overlay
+                playButtonOverlay.addEventListener('click', startVideo);
+            });
         });
     </script>
 
-    <script>
-        // Toggle Mute/Unmute when video is clicked
-        function toggleMute() {
-            var video = document.querySelector('video:not([style*="display: none"])'); // Select the visible video
-            var muteIcon = document.getElementById("muteIcon");
 
-            // Toggle mute state
-            if (video.muted) {
-                video.muted = false;
-                muteIcon.classList.remove("fa-volume-mute");
-                muteIcon.classList.add("fa-volume-up");  // Unmuted icon
-            } else {
-                video.muted = true;
-                muteIcon.classList.remove("fa-volume-up");
-                muteIcon.classList.add("fa-volume-mute");  // Muted icon
-            }
-        }
+    <script>
 
         // Mouse hover event for the mute button
         const muteButton = document.getElementById("unmuteButton");
