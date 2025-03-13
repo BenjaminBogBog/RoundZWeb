@@ -286,30 +286,32 @@ a {
 /* The video library container */
 .video-library {
     display: flex;
-    justify-content: center; /* Centers the videos horizontally */
-    gap: 40px; /* Reduces the space between videos */
-    align-items: flex-start; /* Align items to the top */
-    flex-wrap: wrap; /* Ensures responsiveness */
-
+    justify-content: center;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
 }
 
 /* Title container */
 .title-container {
     width: 100%;
     text-align: center;
-    margin-bottom: 0px; /* Adds space below the title */
+    margin-bottom: 10px;
 }
 
 /* Video container */
 .video-container {
     flex-direction: column;
-    align-items: center; /* Centers content inside each video container */
-    width: 560px;
-    height: 430px; /* Ensures both video containers have the same height */
-    box-sizing: border-box; /* Ensures padding and borders are included */
+    align-items: center;
+    width: 100%;
+    max-width: 560px; /* Prevents videos from becoming too wide */
+    height: auto;
+    aspect-ratio: 16 / 9; /* Ensures all videos keep the same aspect ratio */
+    box-sizing: border-box;
     position: relative;
     display: inline-block;
-    overflow: hidden; /* Prevent content from overflowing */
+    overflow: hidden;
     object-fit: cover;
     transition: transform 0.3s ease-in-out;
 }
@@ -317,82 +319,143 @@ a {
     /* Show title on hover */
     .video-container:hover .video-title {
         opacity: 1;
-        transform: translateY(0); /* Move it up into view */
+        transform: translateY(0);
     }
-/* Video title */
+
+/* Video header */
 .videoheader {
     font-family: 'VeteranTypewriter', Arial, sans-serif;
-    font-size: 3em; /* Adjust font size */
+    font-size: 2.5em;
     color: #a6a6a6;
-    text-align: center; /* Center the title */
+    text-align: center;
     text-transform: uppercase;
-    margin: 20px 0; /* Add margin to create space around the title */
-    width: 100%; /* Ensure title stretches full width */
+    margin: 20px 0;
+    width: 100%;
     box-sizing: border-box;
 }
-/* Style for the video title */
+
+/* Video title */
 .video-title {
     font-family: 'VeteranTypewriter', Arial, sans-serif;
     position: absolute;
-    bottom: 1px; /* Align with the bottom but not over the border */
-    left: 1px; /* Align with the left but not over the border */
-    width: calc(100% - 2px); /* Reduce width to not cover the border */
+    bottom: 1px;
+    left: 1px;
+    color: #a6a6a6;
+    width: calc(100% - 2px);
     background: rgba(0, 0, 0, 0.7);
     color: white;
     text-align: center;
     padding: 10px 0;
-    font-size: 24px;
+    font-size: 1.2em;
     opacity: 0;
     transform: translateY(100%);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     pointer-events: none;
 }
+
+/* Thumbnail container */
 .thumbnail-container {
     position: relative;
     width: 100%;
-    height: 315px; /* Set a fixed height for the thumbnail container */
+    aspect-ratio: 16 / 9; /* Ensures all thumbnails match */
 }
 
+/* Play button */
 .play-button-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    filter: brightness(220%); /* Increases the brightness by 50% */
-    z-index: 10; /* Ensure it appears on top of the thumbnail */
+    filter: brightness(220%);
+    z-index: 10;
 }
 
 .play-button {
     width: 80px;
     height: 60px;
     opacity: 80%;
-    filter: saturate(0%); /* Decrease saturation */
-    cursor: pointer; /* Ensure the play button is clickable */
+    filter: saturate(0%);
+    cursor: pointer;
 }
 
+/* Embedded video */
 .EarlyAccessTrailerEmbed {
     width: 100%;
-    height: 315px; /* Set a fixed height for the embedded video */
+    aspect-ratio: 16 / 9; /* Keeps video proportions */
     border-radius: 10px;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
+/* Video thumbnail */
 .EarlyAccessTrailerThumbnail {
     width: 100%;
     height: 100%;
     border-radius: 1px;
     cursor: pointer;
-    border: 1px solid #ccc; /* Add a border with color */
-    box-sizing: border-box; /* Ensures padding and border are included in the element's total width/height */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
     .EarlyAccessTrailerThumbnail:hover {
-        opacity: 0.8; /* Slight transparency effect */
+        opacity: 0.6; /* Darkens the thumbnail */
+        filter: brightness(70%); /* Reduces brightness to 70% */
+        transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
     }
 
 .thumbnail-container:hover .play-button {
-    opacity: 0.4; /* Adjust the opacity (0 = invisible, 1 = fully visible) */
+    opacity: 0.4;
 }
+
+/* ========================= */
+/* RESPONSIVE DESIGN CHANGES */
+/* ========================= */
+
+/* Tablets & Small Screens */
+@media (max-width: 768px) {
+    .video-library {
+        gap: 20px;
+    }
+
+    .video-container {
+        max-width: 90%;
+    }
+
+    .video-title {
+        font-size: 1em;
+        padding: 8px 0;
+    }
+
+    .videoheader {
+        font-size: 2em;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .video-library {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-container {
+        max-width: 100%;
+    }
+
+    .video-title {
+        font-size: 0.9em;
+        padding: 6px 0;
+    }
+
+    .play-button {
+        width: 50px;
+        height: 40px;
+    }
+
+    .videoheader {
+        font-size: 1.8em;
+    }
+}
+
 .gallery-container {
     display: flex; /* Use flexbox to center content */
     flex-direction: column; /* Stack title and gallery vertically */
